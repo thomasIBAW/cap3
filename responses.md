@@ -4,3 +4,10 @@
 Only one div can be rendered at a time, so to add more than one, you need to put them inside an outer div.
 ### 2. 
 You find the error in the browser console "`main` is not a DOM element"
+
+## Passing Data using Properties
+### 1.
+
+### 2.
+
+### 3.
