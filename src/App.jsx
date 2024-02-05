@@ -20,6 +20,17 @@ class HelloWorld extends React.Component {
     }
 }
 
+class BorderWrap extends React.Component {
+    render() {
+        const borderStyle = {border: "1px solid green", padding:4};
+        return (
+            <div style = {borderStyle}>
+                {this.props.children}
+            </div>
+        )
+    }
+}
+
 class IssueFilter extends React.Component {
     render() {
         return (
@@ -30,7 +41,7 @@ class IssueFilter extends React.Component {
 
 class IssueTable extends React.Component {
     render() {
-        const rowStyle = {border: "1px solid silver", padding:4 }
+        const rowStyle = {border: "1px solid green", padding:4 }
         return (
             <table style= {{border: "1px solid blue"}}>
                 <thead>
@@ -40,8 +51,8 @@ class IssueTable extends React.Component {
                     </tr>
                 </thead>
                 <tbody>
-                    <IssueRow rowStyle={rowStyle} issue_id={1} issue_title="Title  of the first issue"/>
-                    <IssueRow rowStyle={rowStyle} issue_id={2} issue_title="Title  of the second issue"/>
+                    <IssueRow rowStyle={rowStyle} issue_id={1}>Title  of the first issue</IssueRow>
+                    <IssueRow rowStyle={rowStyle} issue_id={2}>Title  of the second issue</IssueRow>
                 </tbody>
             </table>
         );
@@ -54,7 +65,7 @@ class IssueRow extends React.Component {
         return(
             <tr>
                 <td style={style}>{this.props.issue_id}</td>
-                <td style={style}>{this.props.issue_title}</td>
+                <td style={style}>{this.props.children}</td>
             </tr>
         )
     }
