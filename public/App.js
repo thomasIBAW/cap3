@@ -13,6 +13,23 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+var issues = [{
+  id: 1,
+  status: "new",
+  owner: "Ravan",
+  effort: 5,
+  created: new Date('2018-05-12'),
+  due: undefined,
+  title: "This is the first Issue in the List"
+}, {
+  id: 2,
+  status: "new",
+  owner: "Tom",
+  effort: 1,
+  created: new Date('2018-05-10'),
+  due: undefined,
+  title: "This is the second Issue from my fantasy List"
+}];
 var HelloWorld = /*#__PURE__*/function (_React$Component) {
   _inherits(HelloWorld, _React$Component);
   var _super = _createSuper(HelloWorld);
@@ -85,21 +102,17 @@ var IssueTable = /*#__PURE__*/function (_React$Component4) {
         border: "1px solid green",
         padding: 4
       };
+      var issueRows = issues.map(function (issue) {
+        return /*#__PURE__*/React.createElement(IssueRow, {
+          key: issue.id,
+          issue: issue
+        });
+      });
       return /*#__PURE__*/React.createElement("table", {
         style: {
           border: "1px solid blue"
         }
-      }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
-        style: rowStyle
-      }, "ID"), /*#__PURE__*/React.createElement("th", {
-        style: rowStyle
-      }, "Title"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement(IssueRow, {
-        rowStyle: rowStyle,
-        issue_id: 1
-      }, "Title  of the first issue"), /*#__PURE__*/React.createElement(IssueRow, {
-        rowStyle: rowStyle,
-        issue_id: 2
-      }, "Title  of the second issue")));
+      }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "ID"), /*#__PURE__*/React.createElement("th", null, "Status"), /*#__PURE__*/React.createElement("th", null, "Owner"), /*#__PURE__*/React.createElement("th", null, "Created"), /*#__PURE__*/React.createElement("th", null, "Effort"), /*#__PURE__*/React.createElement("th", null, "Due Date"), /*#__PURE__*/React.createElement("th", null, "Title"))), /*#__PURE__*/React.createElement("tbody", null, issueRows));
     }
   }]);
   return IssueTable;
@@ -114,12 +127,8 @@ var IssueRow = /*#__PURE__*/function (_React$Component5) {
   _createClass(IssueRow, [{
     key: "render",
     value: function render() {
-      var style = this.props.rowStyle;
-      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
-        style: style
-      }, this.props.issue_id), /*#__PURE__*/React.createElement("td", {
-        style: style
-      }, this.props.children));
+      var issue = this.props.issue;
+      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, issue.id), /*#__PURE__*/React.createElement("td", null, issue.status), /*#__PURE__*/React.createElement("td", null, issue.owner), /*#__PURE__*/React.createElement("td", null, issue.created.toDateString()), /*#__PURE__*/React.createElement("td", null, issue.effort), /*#__PURE__*/React.createElement("td", null, issue.due ? issue.due.toDateString() : ''), /*#__PURE__*/React.createElement("td", null, issue.title));
     }
   }]);
   return IssueRow;

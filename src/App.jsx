@@ -1,4 +1,23 @@
-
+const issues = [
+    {
+        id: 1,
+        status: "new",
+        owner:"Ravan", 
+        effort: 5,
+        created: new Date('2018-05-12'),
+        due: undefined,
+        title: "This is the first Issue in the List"
+    },
+    {
+        id: 2,
+        status: "new",
+        owner:"Tom", 
+        effort: 1,
+        created: new Date('2018-05-10'),
+        due: undefined,
+        title: "This is the second Issue from my fantasy List"
+    }
+]
 
 
 class HelloWorld extends React.Component {
@@ -42,17 +61,22 @@ class IssueFilter extends React.Component {
 class IssueTable extends React.Component {
     render() {
         const rowStyle = {border: "1px solid green", padding:4 }
+        const issueRows = issues.map(issue => <IssueRow key={issue.id} issue={issue}></IssueRow>)
         return (
             <table style= {{border: "1px solid blue"}}>
                 <thead>
                     <tr>
-                        <th style={rowStyle}>ID</th>
-                        <th style={rowStyle}>Title</th>
+                        <th>ID</th>
+                        <th>Status</th>
+                        <th>Owner</th>
+                        <th>Created</th>
+                        <th>Effort</th>
+                        <th>Due Date</th>
+                        <th>Title</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <IssueRow rowStyle={rowStyle} issue_id={1}>Title  of the first issue</IssueRow>
-                    <IssueRow rowStyle={rowStyle} issue_id={2}>Title  of the second issue</IssueRow>
+                   {issueRows}
                 </tbody>
             </table>
         );
@@ -61,11 +85,16 @@ class IssueTable extends React.Component {
 
 class IssueRow extends React.Component {
     render() {
-        const style = this.props.rowStyle;
+        const issue = this.props.issue;
         return(
             <tr>
-                <td style={style}>{this.props.issue_id}</td>
-                <td style={style}>{this.props.children}</td>
+                <td>{issue.id}</td>
+                <td>{issue.status}</td>
+                <td>{issue.owner}</td>
+                <td>{issue.created.toDateString()}</td>
+                <td>{issue.effort}</td>
+                <td>{issue.due ? issue.due.toDateString() : ''}</td>
+                <td>{issue.title}</td>
             </tr>
         )
     }
